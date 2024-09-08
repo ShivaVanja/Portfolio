@@ -5,6 +5,8 @@ import postgresql from "./../../assets/postgresql.svg"
 import nodejs from "./../../assets/node-js.svg"
 import react from "./../../assets/react.svg"
 import express from "./../../assets/express.svg"
+import prisma from "./../../assets/image.png"
+import { motion } from "framer-motion"
 export const Tech = () => {
   const items = [
     {
@@ -24,6 +26,10 @@ export const Tech = () => {
       img: express
     },
     {
+     name:"prisma",
+     img:prisma
+    },
+    {
       name: "postgresql",
       img: postgresql
     },
@@ -31,27 +37,30 @@ export const Tech = () => {
   ]
 
 
-  return (
-    <>
-      <div className="py-20 h-min">
-        <p className="flex  justify-center gap-2 text-2xl text-center font-extrabold">
-          <span>
-            <img className="h-8" src={techstack}></img>
-          </span>
-          Tech Stack </p>
-        <div className="flex gap-10 justify-center mt-6 flex-wrap">
-          {items.map((item, index) => (
-            <div className="rounded-3xl  bg-gradient-to-r from-[#eb263d] to-[#242424] shadow-lg shadow-white" style={{padding:'1px'}}>
-              
-            <div key={index} className="rounded-3xl bg-[#242424] p-10 `rounded-[calc(1.5rem-1px)]`" style={{margin:"1px"}}>
-             <img className="h-20 w-20"src={item.img} />
-             <p></p>
-            </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
+  return ( <div className="py-20 min-h-screen">
+    <p className="flex justify-center gap-2 text-3xl font-extrabold text-center">
+      <span>
+        <img className="h-8" src={techstack} alt="Tech Stack Logo" />
+      </span>
+      Tech Stack
+    </p>
+
+    <div className="grid gap-10 mt-6 px-4 sm:px-6 lg:px-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      {items.map((item, index) => (
+        <motion.div
+          key={index}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="bg-gradient-to-r from-[#eb263d] to-[#242424] shadow-lg shadow-white rounded-3xl overflow-hidden"
+        >
+          <div className="bg-[#242424] p-6 flex flex-col items-center">
+            <img className="h-20 w-20 mb-4" src={item.img} alt={item.name} />
+            <p className="text-center text-white text-lg">{item.name}</p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
   )
 
 }
